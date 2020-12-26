@@ -1,0 +1,51 @@
+<html>
+    <head><title>JavaScript Output Garden</title></head>
+    
+    <body>
+        <h1>JavaScript DOM Manipulation</h1>
+        <p> First paragraph</p>
+            <button type="button" onclick="addIt()">Click Me!</button>
+
+    </body>
+<script>
+//A single line comment
+    
+/*
+    A multiline
+    comment.
+*/
+    
+//modern JS version of a function
+//Seven types of data types in JS.
+
+var x = 3; //number, var is the older-style way to denote a variable
+let y = true; //boolean, let is the modern way to denote a variable
+const z = 'The unchanging string.'; //String
+let a = {}; //Object, a few ways to instantiate
+let b = null;   //the null type, mostly for error catching
+let c = undefined; //the undefined type, also mostly for errors
+let sym1 = Symbol('foo'); //symbol
+
+//making functions in the modern form    
+const greeting = () => console.log('Hello World');
+const printZ = () => console.log(z); 
+greeting();
+printZ();
+console.log(b);
+console.log(sym1);
+    
+//manipulating DOM, outputting by creating paragraph elements in the body
+    const bb = document.querySelector('body');
+    const cc = document.createElement('p');
+    cc.textContent = 'second paragraph';
+    bb.appendChild(cc);
+    const alpha = document.createElement('p');
+    alpha.textContent = x;
+    
+const addIt = () => {
+    bb.appendChild(alpha);
+};
+
+</script>
+    <footer>(c) C. Ray 2020 </footer>
+</html>

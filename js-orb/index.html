@@ -1,0 +1,137 @@
+<script>
+console.log("JavaScript in the Console");
+
+function greet(){
+    console.log("Hello World!");
+}
+    
+function testRightToLeft(){
+   console.log("ٹلنھاڈٹپپپپپپتتتتتتہہہلل"); 
+}
+    
+//test naming with non Latin letter
+//works in Chrome browser
+function ن(){ //called noon
+    console.log("nun");
+}
+    
+function getTime(){
+    var date = new Date();
+    console.log(date.getDate());
+}
+    
+    const flip = f =>
+        x => y => f(y)(x);
+ 
+    // pred :: Enum a => a -> a
+    const pred = x => x - 1;
+ 
+    // succ :: Enum a => a -> a
+    const succ = x => 1 + x;
+    
+    const go = (m, n) =>
+    /*this is the working ackermann function*/
+            0 === m ? (
+                succ(n)
+            ) : go(pred(m), 0 === n ? (
+                1
+            ) : go(m, pred(n)));
+        
+    
+    const ackermann = (m, n) => {
+        var answer = go(m, n);
+        return answer;
+    };
+    
+    function checkURLSecure() {
+        fetch("https://sourceforge.net")
+    .then(function(response) {
+        return response.text();
+     })
+    .then(function(content) {
+        console.log(content)
+    })
+    .catch(function (err){
+         console.error(err)
+    });
+    }
+    
+    function caesar (text, shift) {
+  return text.toUpperCase().replace(/[^A-Z]/g,'').replace(/./g, function(a) {
+    return String.fromCharCode(65+(a.charCodeAt(0)-65+shift)%26);
+  });
+    }
+    
+    
+const enumFromToInt = (m, n) =>
+        n >= m ? (
+            iterateUntil(x => x >= n, x => 1 + x, m)
+        ) : [];
+ 
+    // iterateUntil :: (a -> Bool) -> (a -> a) -> a -> [a]
+    const iterateUntil = (p, f, x) => {
+        let vs = [x],
+            h = x;
+        while (!p(h))(h = f(h), vs.push(h));
+        return vs;
+    };
+ 
+    // map :: (a -> b) -> [a] -> [b]
+    const map = (f, xs) => xs.map(f);
+ 
+    // scanl :: (b -> a -> b) -> b -> [a] -> [b]
+    const scanl = (f, startValue, xs) =>
+        xs.reduce((a, x) => {
+            const v = f(a.acc, x);
+            return {
+                acc: v,
+                scan: a.scan.concat(v)
+            };
+        }, {
+            acc: startValue,
+            scan: [startValue]
+        })
+        .scan;
+ 
+    // sum :: [Num] -> Num
+    const sum = xs => xs.reduce((a, x) => a + x, 0);
+    
+    const e = () =>
+        sum(map(x => 1 / x,
+            scanl(
+                (a, x) => a * x,
+                1,
+                enumFromToInt(1, 20)
+            )
+        ));
+    
+function factorial(n) {
+  //check our edge case
+  if (n < 0) { throw "Number must be non-negative"; }
+ 
+  var result = 1;
+  //we skip zero and one since both are 1 and are identity
+  while (n > 1) {
+    result *= n;
+    n--;
+  }
+  return result;
+}
+    
+    var calcPi = function() {
+  var n = 20000;
+  var pi = 0;
+  for (var i = 0; i < n; i++) {
+    var temp = 4 / (i*2+1);
+    if (i % 2 == 0) {
+      pi += temp;
+    }
+    else {
+      pi -= temp;
+    }
+  }
+  return pi;
+}
+
+    
+</script>
