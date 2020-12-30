@@ -1,0 +1,16 @@
+h1 
+{
+    font-family:     Verdana;
+}
+ 
+a:link,        a:visited 
+{ 
+    color:           blue;
+    text-decoration: none;
+    cursor:          automatic;
+}
+ 
+a:link:active, a:visited:active 
+{ 
+    color: blue;
+}
