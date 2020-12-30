@@ -1,0 +1,9 @@
+thePlace = {
+    "address":"not stated",
+    "car-has-gas":true,
+    "cars": {
+        "car1":"2011 Ford Fiesta",
+        "car2":"none",
+        "car3":"none"
+    }
+ }
