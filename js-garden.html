@@ -1,0 +1,115 @@
+<html>
+    <head><title>JavaScript Output Garden</title></head>
+    
+    <body>
+        <h1>JavaScript DOM Manipulation</h1>
+        <p> First paragraph</p>
+            <button type="button" onclick="addIt()">Click Me!</button>
+        <div style="color:blue; box-sizing: border-box; padding = 50px;width = 25%; height = 25%; border: 5px solid orange;box-shadow: 10px 10px black; margin: 10;" class="one">
+            <script>
+            const program1 = () => {
+                const divSelector=document.querySelector('div');
+                const myShit = document.createElement('p');
+                   myShit.textContent = 'generated p, and this paragraph element is filled with more and more text, to test how it reacts on mobile. '; 
+                    divSelector.appendChild(myShit);
+            };
+                program1();
+            </script>
+        </div>
+        <div style="color:red; box-sizing: border-box; padding = 50px;width = 100px; height = 100px; border: 5px solid orange;box-shadow: 10px 10px black; margin: 10;" class="two">
+            <script>
+            const program2 = () => {
+            var x = 2;
+                const divSelector=document.querySelector('div.two');
+                const myShit = document.createElement('p');
+                   myShit.textContent = 'generated p again'; 
+                    divSelector.appendChild(myShit);
+            };
+                program2();
+            </script>
+        </div>
+        <div style="color:gray;border=2;box-shadow: 10px 10px black;" class="three">
+            <script>
+                 const program3 = () => {
+                     window.status = "<TYPE YOUR MESSAGE>"; 
+                 };
+                    program3();
+            </script>
+        </div>
+        <div style="color:red; box-sizing: border-box; padding = 50px;width = 100px; height = 100px; border: 5px solid orange;box-shadow: 10px 10px black; margin: 10;" class="four">
+            <script>
+                let program4 = () => {
+                    const divSelector=document.querySelector('div.four');
+                    const myShit = document.createElement('p');
+                    myShit.textContent = 'program 4 generated this';
+                    divSelector.appendChild(myShit);
+                };
+                
+                program4();
+            </script>
+        </div>
+        
+        <div style="color:red; box-sizing: border-box; padding = 50px;width = 100px; height = 100px; border: 5px solid orange;box-shadow: 10px 10px black; margin: 10;" class="five">
+            <script>
+                /*automatically invoked function*/
+                (function foo() {
+                    const divSelector=document.querySelector('div.five');
+                    const myShit = document.createElement('p');
+                    myShit.textContent = 'program 5, self-running, generated this';
+                    divSelector.appendChild(myShit);
+                }());
+            </script>
+        </div>
+        <div style="color:red; box-sizing: border-box; padding = 50px;width = 100px; height = 100px; border: 5px solid orange;box-shadow: 10px 10px black; margin: 10;" class="six">
+            <script>
+                (function foo() {
+                    const divSelector=document.querySelector('div.six');
+                    const myShit = document.createElement('p');
+                    const myOtherShit = document.createElement('p');
+                    myOtherShit.textContent = (!+[]+[]+![]).length;
+                    myShit.textContent = 'program 6, self-running, generated this';
+                    divSelector.appendChild(myShit);
+                    divSelector.appendChild(myOtherShit);
+                }());
+                
+            </script>
+        </div>
+        
+        <script>
+            /*Generate divs from within JS */
+            var div = document.createElement("div");
+div.style.width = "100px";
+div.style.height = "100px";
+div.style.background = "red";
+div.style.color = "white";
+div.innerHTML = "Hello";
+
+document.querySelector('body').appendChild(div);
+        </script>
+    </body>
+<script>
+
+var x = 3; //number, var is the older-style way to denote a variable
+let y = true; //boolean, let is the modern way to denote a variable
+const z = 'The unchanging string.'; //String
+let a = {}; //Object, a few ways to instantiate
+let b = null;   //the null type, mostly for error catching
+let c = undefined; //the undefined type, also mostly for errors
+let sym1 = Symbol('foo'); //symbol
+
+    
+//manipulating DOM, outputting by creating paragraph elements in the body
+    const bb = document.querySelector('body');
+    const cc = document.createElement('p');
+    cc.textContent = 'second paragraph';
+    bb.appendChild(cc);
+    const alpha = document.createElement('p');
+    alpha.textContent = x;
+    
+const addIt = () => {
+    bb.appendChild(alpha);
+};
+
+</script>
+    <footer>(c) C. Ray 2020 </footer>
+</html>
