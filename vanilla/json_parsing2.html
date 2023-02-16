@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JSON Test 2</title>
+    </head>
+<body>
+
+<h2>Create Object from JSON String</h2>
+<select id="mySelect"></select>
+
+<p id="itemData"></p>
+<script>
+let data = [{
+    "id": "1",
+    "name": "Tiffany"
+  },
+  {
+    "id": "2",
+    "name": "Lorencio"
+  },
+  {
+    "id": "3",
+    "name": "Aarik"
+  }
+];
+
+//var accounts = JSON.parse(data);
+var selectElement = document.getElementById('mySelect');
+
+data.map(item => mySelect.appendChild(new Option(item.name, item.id)).cloneNode(true));
+
+
+
+selectElement.addEventListener("change", function() {
+    var pElement = document.getElementById('itemData');
+    pElement.innerText = "changed innerText of p";
+});
+
+
+//pElement.innerText = "new paragraph";
+</script>
