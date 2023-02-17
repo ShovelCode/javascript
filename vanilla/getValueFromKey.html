@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JSON Test 2</title>
+    </head>
+<body>
+
+<form>
+<input type="text" id="txt_value"><br>
+<input type="submit">
+</form>
+<script>
+let data = {
+    "id": "1",
+    "name": "Rachel",
+    "style": "Mrs."
+  };
+
+document.getElementById('txt_value').value = getValueByKey("name",data);
+
+//string x, json y
+function getValueByKey(x, y){
+    return y[x];
+}
+
+
+
+</script>
