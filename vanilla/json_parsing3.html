@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JSON Test 2</title>
+    </head>
+<body>
+
+<h2>Create Object from JSON String</h2>
+<form>
+<select id="mySelect" onchange="modifyItems(this.value)"></select>
+<input type="text" id="txt_name">
+<input type="text" id="txt_style">
+<input type="submit">
+</form>
+<script>
+let data = [{
+    "id": "1",
+    "name": "Tiffany",
+    "style": "Mrs."
+  },
+  {
+    "id": "2",
+    "name": "Lorencio",
+    "style":"Mr."
+  },
+  {
+    "id": "3",
+    "name": "Aarik",
+    "style": "Mr."
+  }
+];
+
+
+data.map(item => document.getElementById('mySelect').appendChild(new Option(item.name, item.id, item.style)).cloneNode(true));
+let accounts = JSON.parse(data);
+
+function modifyItems(x){
+  document.getElementById('txt_name').value = data[x.id]["name"];
+  document.getElementById('txt_style').value = data[x.id]["style"];
+  
+}
+
+
+
+</script>
