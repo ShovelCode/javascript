@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bind JSON data from file to SELECT dropdown list</title>
+    <style>
+    	* { font-family: calibri; font-size: 20px; }
+    </style>
+</head>
+<body>
+  <h2>The dropdown list below is populated using data extracted from an external JSON file.</h2>
+
+  <select id="sel" onchange="show(this)">
+    <option value="">-- Select --</option>
+  </select>
+
+  <p id="msg"></p>
+  
+  
+  
+  <p>
+    <a href="https://www.encodedna.com/javascript/populate-select-dropdown-list-with-json-data-using-javascript.htm" target="_blank">Go to tutorial</a>
+  </p>
+</body>
+
+<script>
+    window.onload = populateSelect();
+
+    function populateSelect() {
+
+        // Create XMLHttpRequest object, with GET method.
+        var xhr = new XMLHttpRequest(), 
+            method = 'GET',
+            overrideMimeType = 'application/json',
+            url = '../../library/sample.json';  // Add the file URL.
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+
+          // Parse JSON data.
+          let birds = JSON.parse(xhr.responseText);
+
+          let ele = document.getElementById('sel');
+          for (let i = 0; i < birds.length; i++) {
+          
+            // Bind data to <select> element.
+            ele.innerHTML = ele.innerHTML +
+              '<option value="' + birds[i].ID + '">' + birds[i].Name + '</option>';
+          }
+        }
+      };
+      xhr.open(method, url, true);
+      xhr.send();
+    }
+
+    function show(ele) {
+        // Get the selected value from <select> element and show it.
+        let msg = document.getElementById('msg');
+        msg.innerHTML = 'Selected Bird: <b>' + ele.options[ele.selectedIndex].text + '</b> </br>' +
+            'ID: <b>' + ele.value + '</b>';
+    }
+</script>
+</html>
