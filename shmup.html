@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Shmup Game</title>
+    <style>
+        #canvas {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <script>
+        // get the canvas and context
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        
+        // define game variables
+        let playerX = canvas.width / 2;
+        let playerY = canvas.height - 50;
+        let playerWidth = 50;
+        let playerHeight = 50;
+        let playerSpeed = 5;
+        let bulletRadius = 5;
+        let bulletSpeed = 10;
+        let bullets = [];
+        let enemyWidth = 50;
+        let enemyHeight = 50;
+        let enemySpeed = 2;
+        let enemies = [];
+        let score = 0;
+        let gameOver = false;
+        
+        // handle key input
+        let leftArrowPressed = false;
+        let rightArrowPressed = false;
+        let spacebarPressed = false;
+        document.addEventListener("keydown", function(event) {
+            if (event.keyCode === 37) {
+                leftArrowPressed = true;
+            } else if (event.keyCode === 39) {
+                rightArrowPressed = true;
+            } else if (event.keyCode === 32) {
+                spacebarPressed = true;
+            }
+        });
+        document.addEventListener("keyup", function(event) {
+            if (event.keyCode === 37) {
+                leftArrowPressed = false;
+            } else if (event.keyCode === 39) {
+                rightArrowPressed = false;
+            } else if (event.keyCode === 32) {
+                spacebarPressed = false;
+            }
+        });
+        
+        // game loop function
+        function gameLoop() {
+            // clear the canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // move the player
+            if (leftArrowPressed && playerX > 0) {
+                playerX -= playerSpeed;
+            } else if (rightArrowPressed && playerX + playerWidth < canvas.width) {
+                playerX += playerSpeed;
+            }
+            
+            // shoot bullets
+            if (spacebarPressed) {
+                bullets.push({x: playerX + playerWidth / 2, y: playerY, dx: 0, dy: -bulletSpeed});
+            }
+            
+            // move the bullets
+            bullets.forEach(function(bullet, index) {
+                bullet.x += bullet.dx;
+                bullet.y += bullet.dy;
+                
+                // remove bullets that go off screen
+                if (bullet.y < -bulletRadius) {
+                    bullets.splice(index, 1);
+                }
+                
+                // check for collisions with enemies
+                enemies.forEach(function(enemy, enemyIndex) {
+                    if (bullet.x + bulletRadius > enemy.x && bullet.x - bulletRadius < enemy.x + enemyWidth && bullet.y + bulletRadius > enemy.y && bullet.y - bulletRadius < enemy.y + enemyHeight) {
+                        bullets.splice(index, 1);
+                        enemies.splice(enemyIndex, 1);
+                        score++;
+                    }
+                });
+            });
+            
+            // move the enemies
+            enemies.forEach(function(enemy, index) {
+                enemy.y += enemySpeed;
+                
+                // check for collisions with the player
+                if (enemy.x + enemyWidth > playerX && enemy.x < playerX + playerWidth && enemy.y + enemyHeight > playerY && enemy.y
