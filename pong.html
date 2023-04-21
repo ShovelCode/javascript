@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pong Game</title>
+    <style>
+        #canvas {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <script>
+        // get the canvas and context
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        
+        // define game variables
+        let ballX = canvas.width / 2;
+        let ballY = canvas.height / 2;
+        let ballRadius = 10;
+        let ballSpeedX = 5;
+        let ballSpeedY = 5;
+        let paddleWidth = 10;
+        let paddleHeight = 100;
+        let paddleSpeed = 10;
+        let player1Score = 0;
+        let player2Score = 0;
+        let gameOver = false;
+        
+        // create the paddles
+        let paddle1Y = (canvas.height - paddleHeight) / 2;
+        let paddle2Y = (canvas.height - paddleHeight) / 2;
+        
+        // handle key input
+        let upArrowPressed = false;
+        let downArrowPressed = false;
+        document.addEventListener("keydown", function(event) {
+            if (event.keyCode === 38) {
+                upArrowPressed = true;
+            } else if (event.keyCode === 40) {
+                downArrowPressed = true;
+            }
+        });
+        document.addEventListener("keyup", function(event) {
+            if (event.keyCode === 38) {
+                upArrowPressed = false;
+            } else if (event.keyCode === 40) {
+                downArrowPressed = false;
+            }
+        });
+        
+        // game loop function
+        function gameLoop() {
+            // clear the canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // draw the ball
+            ctx.beginPath();
+            ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+            ctx.fillStyle = "black";
+            ctx.fill();
+            ctx.closePath();
+            
+            // draw the paddles
+            ctx.fillRect(0, paddle1Y, paddleWidth, paddleHeight);
+            ctx.fillRect(canvas.width - paddleWidth, paddle2Y, paddleWidth, paddleHeight);
+            
+            // move the ball
+            ballX += ballSpeedX;
+            ballY += ballSpeedY;
+            
+            // check for collisions with walls
+            if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
+                ballSpeedY = -ballSpeedY;
+            }
+            
+            // check for collisions with paddles
+            if (ballX - ballRadius < paddleWidth && ballY > paddle1Y && ballY < paddle1Y + paddleHeight) {
+                ballSpeedX = -ballSpeedX;
+            } else if (ballX + ballRadius > canvas.width - paddleWidth && ballY > paddle2Y && ballY < paddle2Y + paddleHeight) {
+                ballSpeedX = -ballSpeedX;
+            }
+            
+            // move the paddles
+            if (upArrowPressed && paddle1Y > 0) {
+                paddle1Y -= paddleSpeed;
+            } else if (downArrowPressed && paddle1Y + paddleHeight < canvas.height) {
+                paddle1Y += paddleSpeed;
+            }
+            
+            // check for scoring
+            if (ballX - ballRadius < 0) {
+                player2Score++;
+                resetGame();
