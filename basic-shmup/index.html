@@ -1,0 +1,42 @@
+		// Draw enemies
+		ctx.fillStyle = "red";
+		for (var i = 0; i < enemies.length; i++) {
+			ctx.fillRect(enemies[i].x, enemies[i].y, enemies[i].width, enemies[i].height);
+		}
+		
+		// Request next animation frame
+		requestAnimationFrame(gameLoop);
+	}
+	
+	// Handle user input
+	var leftPressed = false;
+	var rightPressed = false;
+	var spacePressed = false;
+	
+	document.addEventListener("keydown", function(event) {
+		if (event.key === "ArrowLeft") {
+			leftPressed = true;
+		}
+		else if (event.key === "ArrowRight") {
+			rightPressed = true;
+		}
+		else if (event.key === " ") {
+			spacePressed = true;
+		}
+	});
+	
+	document.addEventListener("keyup", function(event) {
+		if (event.key === "ArrowLeft") {
+			leftPressed = false;
+		}
+		else if (event.key === "ArrowRight") {
+			rightPressed = false;
+		}
+		else if (event.key === " ") {
+			spacePressed = false;
+		}
+	});
+	
+	// Start game loop
+	requestAnimationFrame(gameLoop);
+</script>
